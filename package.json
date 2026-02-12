@@ -1,0 +1,28 @@
+{
+  "name": "housekeeping-onboarding-system",
+  "version": "1.0.0",
+  "description": "Interactive Housekeeping Onboarding System",
+  "private": true,
+  "scripts": {
+    "install-all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "cd frontend && npm start",
+    "dev:backend": "cd backend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "cd backend && npm test",
+    "test:frontend": "cd frontend && npm test",
+    "seed": "cd backend && npm run seed",
+    "lint": "eslint . --ext .js,.jsx",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\""
+  },
+  "keywords": ["housekeeping", "onboarding", "training", "gamification", "hospitality"],
+  "author": "Your Organization",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "eslint": "^8.56.0",
+    "prettier": "^3.1.1",
+    "husky": "^8.0.3"
+  }
+}

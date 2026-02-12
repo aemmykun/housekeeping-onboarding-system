@@ -1,0 +1,25 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* Animation for feature cards */
+.MuiPaper-root {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.MuiPaper-root:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}

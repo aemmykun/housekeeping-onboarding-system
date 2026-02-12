@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Environment & Keys
+.env
+.env.local
+.env.production
+google-key.json
+*.json.key
+
+# Build outputs
+frontend/build/
+backend/dist/
+*.log
+server-log.txt
+final-test-results.txt
+mongo-results.txt
+test-results-detailed.txt
+shard-ips.txt
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+*.test.js.snap
+backend/test-*.js
+
+# Misc
+*.bak
+*.tmp
+.cache/
