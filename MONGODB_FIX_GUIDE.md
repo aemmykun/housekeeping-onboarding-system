@@ -4,7 +4,7 @@
 
 Your MongoDB connection is failing with **error code 8000** (authentication failed).
 
-```
+```text
 Error Code: 8000
 Message: bad auth : authentication failed
 ```
@@ -65,7 +65,7 @@ Message: bad auth : authentication failed
 
 It should look like:
 
-```
+```text
 mongodb+srv://aemmykun:<password>@babigonz.dsf9byy.mongodb.net/?retryWrites=true&w=majority&appName=Babigonz
 ```
 
@@ -91,7 +91,7 @@ MONGODB_URI="mongodb+srv://aemmykun:YOUR_NEW_PASSWORD@babigonz.dsf9byy.mongodb.n
 **Example:**
 If password is `Pass@123$`, use:
 
-```
+```text
 mongodb+srv://aemmykun:Pass%40123%24@babigonz...
 ```
 
@@ -106,7 +106,7 @@ node test-mongo.js
 
 **Expected output:**
 
-```
+```text
 ✅ MongoDB Connected: babigonz-shard-00-02.dsf9byy.mongodb.net
 📊 Database: housekeeping_onboarding
 ```
