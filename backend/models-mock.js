@@ -171,20 +171,51 @@ class User {
 
     static async findOne(query) {
         if (query.email) {
-            return fileDatabase.users.get(query.email) || null;
+            const user = fileDatabase.users.get(query.email);
+            return user ? new User(user) : null;
         }
         return null;
     }
 
     static async findById(id) {
-        for (let user of fileDatabase.users.values()) {
-            if (user.id === id) return user;
+        for (let userData of fileDatabase.users.values()) {
+            if (userData.id === id) return new User(userData);
         }
         return null;
     }
 
     async comparePassword(candidatePassword) {
         return this.password === candidatePassword;
+    }
+
+    // Generate JWT token
+    generateAuthToken() {
+        const jwt = require('jsonwebtoken');
+        return jwt.sign(
+            { id: this.id, email: this.email, role: this.role },
+            process.env.JWT_SECRET || 'default-secret-key',
+            { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
+        );
+    }
+
+    // Get public profile (without password)
+    getPublicProfile() {
+        return {
+            id: this.id,
+            firstName: this.firstName,
+            lastName: this.lastName,
+            email: this.email,
+            role: this.role,
+            department: this.department,
+            phone: this.phone,
+            points: this.points,
+            level: this.level,
+            badges: this.badges,
+            completedModules: this.completedModules,
+            isActive: this.isActive,
+            createdAt: this.createdAt,
+            lastLogin: this.lastLogin
+        };
     }
 }
 
