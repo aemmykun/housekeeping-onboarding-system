@@ -12,9 +12,10 @@ app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:3000' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Mock database connection for local development
+// File-based database for local development
 console.log('🔧 Running in LOCAL DEVELOPMENT mode (no MongoDB required)');
-console.log('📝 Using mock data for testing');
+console.log('💾 Using file-based storage: C:\\housekeeping-data');
+console.log('📝 Data persists between server restarts');
 
 // Routes
 const authRoutes = require('./routes/auth');
@@ -26,7 +27,8 @@ app.get('/api/health', (req, res) => {
         status: 'OK',
         message: 'Housekeeping Onboarding API is running',
         mode: 'LOCAL_DEVELOPMENT',
-        database: 'Mock Data (No MongoDB)',
+        database: 'File Storage (C:\\housekeeping-data)',
+        persistence: 'Enabled',
         timestamp: new Date().toISOString()
     });
 });
