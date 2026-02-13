@@ -37,6 +37,7 @@ app.use('/api/modules', moduleRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
 
 // Error handling middleware
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ error: 'Something went wrong!' });

@@ -65,7 +65,7 @@ class Module {
         return this;
     }
 
-    static async find(query = {}) {
+    static async find() {
         return Array.from(mockDatabase.modules.values());
     }
 
