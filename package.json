@@ -6,8 +6,10 @@
   "scripts": {
     "install-all": "npm install && cd frontend && npm install && cd ../backend && npm install",
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:local": "concurrently \"npm run dev:backend:local\" \"npm run dev:frontend\"",
     "dev:frontend": "cd frontend && npm start",
     "dev:backend": "cd backend && npm run dev",
+    "dev:backend:local": "cd backend && nodemon server-local.js",
     "build": "cd frontend && npm run build",
     "test": "npm run test:backend && npm run test:frontend",
     "test:backend": "cd backend && npm test",
@@ -16,7 +18,13 @@
     "lint": "eslint . --ext .js,.jsx",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\""
   },
-  "keywords": ["housekeeping", "onboarding", "training", "gamification", "hospitality"],
+  "keywords": [
+    "housekeeping",
+    "onboarding",
+    "training",
+    "gamification",
+    "hospitality"
+  ],
   "author": "Your Organization",
   "license": "MIT",
   "devDependencies": {
