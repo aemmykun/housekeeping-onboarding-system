@@ -22,6 +22,9 @@ import ModuleList from './components/Modules/ModuleList';
 import ModuleViewer from './components/Modules/ModuleViewer';
 import ModuleEditor from './components/Modules/ModuleEditor';
 
+// PMS components
+import { DashboardPage, RoomsPage, TasksPage, StaffPage } from './components/PMS/PMSLayout';
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -47,7 +50,6 @@ function App() {
         <AuthProvider>
           <Router>
             <Routes>
-              {/* ... routes ... */}
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
@@ -77,6 +79,11 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+              {/* PMS Routes */}
+              <Route path="/pms" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+              <Route path="/pms/rooms" element={<ProtectedRoute><RoomsPage /></ProtectedRoute>} />
+              <Route path="/pms/tasks" element={<ProtectedRoute><TasksPage /></ProtectedRoute>} />
+              <Route path="/pms/staff" element={<ProtectedRoute><StaffPage /></ProtectedRoute>} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Router>

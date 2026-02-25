@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const dns = require('dns');
-
 const path = require('path');
+
 dotenv.config({ path: path.join(__dirname, '../.env') });
 
-// Set DNS servers to Google DNS to bypass local ISP DNS issues with MongoDB Atlas
+// Set DNS servers to Google for MongoDB Atlas reliability
 dns.setServers(['8.8.8.8', '8.8.4.4']);
 
 const app = express();
@@ -19,47 +19,51 @@ app.use(express.urlencoded({ extended: true }));
 
 // Database connection
 mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('✓ MongoDB connected successfully to:', process.env.MONGODB_URI.split('@')[1]))
+  .then(() => console.log('✓ MongoDB connected to:', process.env.MONGODB_URI.split('@')[1]))
   .catch(err => {
-    console.error('✗ MongoDB connection error!');
-    console.error('Error Name:', err.name);
-    console.error('Error Message:', err.message);
-    if (err.reason) console.error('Reason:', err.reason);
+    console.error('✗ MongoDB connection error:', err.message);
   });
 
-// Routes
+// ── Routes ──────────────────────────────────────────────────────────────────
 const authRoutes = require('./routes/auth');
 const moduleRoutes = require('./routes/modules');
 const leaderboardRoutes = require('./routes/leaderboard');
+const roomRoutes = require('./routes/rooms');
+const bookingRoutes = require('./routes/bookings');
+const taskRoutes = require('./routes/tasks');
+const staffRoutes = require('./routes/staff');
 
+// Health check
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'OK',
-    message: 'Housekeeping Onboarding API is running',
-    timestamp: new Date().toISOString()
+    message: 'PMS API is running',
+    timestamp: new Date().toISOString(),
   });
 });
 
-// API Routes
+// Existing routes
 app.use('/api/auth', authRoutes);
 app.use('/api/modules', moduleRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
 
-// TODO: Add more route imports here
-// const badgeRoutes = require('./routes/badges');
-// app.use('/api/badges', badgeRoutes);
+// PMS routes
+app.use('/api/rooms', roomRoutes);
+app.use('/api/bookings', bookingRoutes);
+app.use('/api/tasks', taskRoutes);
+app.use('/api/staff', staffRoutes);
 
-// Error handling middleware
+// Global error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).json({ error: 'Something went wrong!' });
+  res.status(500).json({ error: 'Something went wrong!', message: err.message });
 });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`🏨 Housekeeping Onboarding System API`);
-  console.log(`📡 Health check: http://localhost:${PORT}/api/health`);
+  console.log(`🏨 Lean PMS — Room & Staff Management`);
+  console.log(`📡 Health: http://localhost:${PORT}/api/health`);
 });
 
 module.exports = app;
