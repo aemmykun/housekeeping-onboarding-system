@@ -20,12 +20,14 @@ const TABS_BY_ROLE = {
     manager: [
         { label: '📊 Dashboard', path: '/pms' },
         { label: '🛏 Rooms', path: '/pms/rooms' },
+        { label: '🗓 Calendar', path: '/pms/calendar' },
         { label: '✅ Tasks', path: '/pms/tasks' },
         { label: '👥 Staff', path: '/pms/staff' },
     ],
     'front-desk': [
         { label: '📊 Dashboard', path: '/pms' },
         { label: '🛏 Rooms', path: '/pms/rooms' },
+        { label: '🗓 Calendar', path: '/pms/calendar' },
         { label: '✅ Tasks', path: '/pms/tasks' },
     ],
     housekeeper: [
@@ -35,6 +37,7 @@ const TABS_BY_ROLE = {
         { label: '✅ My Tasks', path: '/pms/tasks' },
     ],
 };
+
 
 export default function PMSNavbar() {
     const { user, logout } = useAuth();

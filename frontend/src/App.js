@@ -23,7 +23,8 @@ import ModuleViewer from './components/Modules/ModuleViewer';
 import ModuleEditor from './components/Modules/ModuleEditor';
 
 // PMS components
-import { DashboardPage, RoomsPage, TasksPage, StaffPage } from './components/PMS/PMSLayout';
+import { DashboardPage, RoomsPage, TasksPage, StaffPage, CalendarPage } from './components/PMS/PMSLayout';
+
 
 const theme = createTheme({
   palette: {
@@ -82,9 +83,11 @@ function App() {
               {/* PMS Routes */}
               <Route path="/pms" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
               <Route path="/pms/rooms" element={<ProtectedRoute><RoomsPage /></ProtectedRoute>} />
+              <Route path="/pms/calendar" element={<ProtectedRoute><CalendarPage /></ProtectedRoute>} />
               <Route path="/pms/tasks" element={<ProtectedRoute><TasksPage /></ProtectedRoute>} />
               <Route path="/pms/staff" element={<ProtectedRoute><StaffPage /></ProtectedRoute>} />
               <Route path="*" element={<Navigate to="/" replace />} />
+
             </Routes>
           </Router>
         </AuthProvider>

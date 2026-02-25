@@ -161,6 +161,49 @@ exports.seedRooms = async (req, res) => {
 };
 
 /**
+ * GET /api/rooms/calendar?startDate=YYYY-MM-DD&endDate=YYYY-MM-DD
+ * Returns rooms with their bookings in the given date range for the calendar view
+ */
+exports.getCalendar = async (req, res) => {
+    try {
+        const { startDate, endDate } = req.query;
+        const start = startDate ? new Date(startDate) : new Date();
+        start.setHours(0, 0, 0, 0);
+        const end = endDate ? new Date(endDate) : new Date(start);
+        end.setDate(end.getDate() + 7);
+        end.setHours(23, 59, 59, 999);
+
+        const rooms = await Room.find({ outOfOrder: { $ne: true } })
+            .select('roomNumber floor type status')
+            .sort({ floor: 1, roomNumber: 1 });
+
+        const bookings = await Booking.find({
+            status: { $in: ['checked-in', 'confirmed'] },
+            $or: [
+                { checkIn: { $lte: end }, checkOut: { $gte: start } },
+            ],
+        }).select('guestName roomId checkIn checkOut status');
+
+        // Index bookings by roomId
+        const bookingMap = {};
+        bookings.forEach(b => {
+            const key = b.roomId.toString();
+            if (!bookingMap[key]) bookingMap[key] = [];
+            bookingMap[key].push(b);
+        });
+
+        const calendar = rooms.map(r => ({
+            ...r.toObject(),
+            bookings: bookingMap[r._id.toString()] || [],
+        }));
+
+        res.json({ success: true, startDate: start, endDate: end, calendar });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    }
+};
+
+/**
  * GET /api/rooms/summary — dashboard summary stats
  */
 exports.getSummary = async (req, res) => {

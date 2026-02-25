@@ -11,13 +11,17 @@ const {
     deleteRoom,
     seedRooms,
     getSummary,
+    getCalendar,
 } = require('../controllers/roomController');
+
 
 // All room routes require authentication
 router.use(protect);
 
 router.get('/summary', getSummary);
+router.get('/calendar', getCalendar);
 router.post('/seed', authorize('manager'), seedRooms);
+
 
 router.route('/')
     .get(getAllRooms)

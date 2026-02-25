@@ -19,12 +19,17 @@ const handleResponse = async (res) => {
 export const roomsApi = {
     getAll: () => fetch(`${API_BASE}/rooms`, { headers: getHeaders() }).then(handleResponse),
     getSummary: () => fetch(`${API_BASE}/rooms/summary`, { headers: getHeaders() }).then(handleResponse),
+    getCalendar: (startDate, endDate) => {
+        const qs = new URLSearchParams({ startDate, endDate }).toString();
+        return fetch(`${API_BASE}/rooms/calendar?${qs}`, { headers: getHeaders() }).then(handleResponse);
+    },
     getOne: (id) => fetch(`${API_BASE}/rooms/${id}`, { headers: getHeaders() }).then(handleResponse),
     create: (data) => fetch(`${API_BASE}/rooms`, { method: 'POST', headers: getHeaders(), body: JSON.stringify(data) }).then(handleResponse),
     updateStatus: (id, status) => fetch(`${API_BASE}/rooms/${id}/status`, { method: 'PATCH', headers: getHeaders(), body: JSON.stringify({ status }) }).then(handleResponse),
     assignStaff: (id, staffId) => fetch(`${API_BASE}/rooms/${id}/assign`, { method: 'PATCH', headers: getHeaders(), body: JSON.stringify({ staffId }) }).then(handleResponse),
     seed: () => fetch(`${API_BASE}/rooms/seed`, { method: 'POST', headers: getHeaders() }).then(handleResponse),
 };
+
 
 // ── Bookings ─────────────────────────────────────────────────────────────────
 export const bookingsApi = {
