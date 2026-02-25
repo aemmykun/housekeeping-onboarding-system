@@ -1,4 +1,4 @@
-# 🚀 Setup Complete!
+# 🚀 Setup Complete
 
 Your Housekeeping Onboarding System has been initialized successfully.
 
@@ -15,25 +15,30 @@ Your Housekeeping Onboarding System has been initialized successfully.
 Before you can run the application, install these:
 
 ### 1. Node.js (Required)
+
 - Download from: <https://nodejs.org/>
 - Recommended version: 18.x or higher
 - Verify: `node --version` and `npm --version`
 
 ### 2. MongoDB (Required)
+
 - Download from: <https://www.mongodb.com/try/download/community>
 - Or use MongoDB Atlas (cloud): <https://www.mongodb.com/cloud/atlas>
 - Verify: `mongod --version`
 
 ### 3. Git (Recommended)
+
 - Download from: <https://git-scm.com/>
 - For version control and collaboration
 
 ## 🎯 Quick Start
 
 ### Step 1: Install Node.js and MongoDB
+
 Follow the links above to install required software.
 
 ### Step 2: Install Dependencies
+
 ```bash
 npm run install-all
 ```
@@ -41,6 +46,7 @@ npm run install-all
 This will install dependencies for root, frontend, and backend.
 
 ### Step 3: Environment Configuration
+
 ```bash
 # Copy the example environment file
 cp .env.example .env
@@ -51,6 +57,7 @@ cp .env.example .env
 ```
 
 ### Step 4: Start MongoDB
+
 ```bash
 # Local MongoDB
 mongod
@@ -59,18 +66,20 @@ mongod
 ```
 
 ### Step 5: Start Development Servers
+
 ```bash
 npm run dev
 ```
 
 This starts both servers:
+
 - **Frontend**: <http://localhost:3000>
 - **Backend API**: <http://localhost:5000>
 - **Health Check**: <http://localhost:5000/api/health>
 
 ## 📂 Project Structure
 
-```
+```text
 housekeeping-onboarding-system/
 ├── frontend/                 # React application
 │   ├── src/
@@ -143,6 +152,7 @@ npm run seed             # Seed database with sample data
 ## 📝 Next Development Steps
 
 ### Phase 1: Authentication & User Management
+
 1. **Create User Model** (`backend/models/User.js`)
    - Email, password, role, profile info
    - Methods: comparePassword, generateToken
@@ -159,6 +169,7 @@ npm run seed             # Seed database with sample data
    - Auth context (`frontend/src/contexts/AuthContext.js`)
 
 ### Phase 2: Learning Modules
+
 1. **Module Model** (`backend/models/Module.js`)
    - Title, description, content, quizzes
 2. **Module Routes** (`backend/routes/modules.js`)
@@ -171,6 +182,7 @@ npm run seed             # Seed database with sample data
    - Quiz component
 
 ### Phase 3: Gamification
+
 1. **Badge Model** (`backend/models/Badge.js`)
    - Name, description, criteria, icon
 2. **Point System** (`backend/models/UserProgress.js`)
@@ -182,11 +194,13 @@ npm run seed             # Seed database with sample data
    - Leaderboard
 
 ### Phase 4: Social Learning
+
 1. **Post Model** for discussion forums
 2. **Mentorship matching system**
 3. **Real-time chat with Socket.io**
 
 ### Phase 5: AR/VR Features
+
 1. **AR equipment scanner**
 2. **VR training scenarios**
 3. **3D room tours**
@@ -227,6 +241,7 @@ PUSH_NOTIFICATION_KEY=your-firebase-key
 ## 🐛 Troubleshooting
 
 ### Port Already in Use
+
 ```bash
 # Find and kill process on port 3000 or 5000
 # Windows:
@@ -238,11 +253,13 @@ lsof -ti:3000 | xargs kill -9
 ```
 
 ### MongoDB Connection Error
+
 - Ensure MongoDB is running: `mongod`
 - Check MONGODB_URI in .env
 - For MongoDB Atlas, check network access whitelist
 
 ### Module Not Found Errors
+
 ```bash
 # Clear node_modules and reinstall
 rm -rf node_modules frontend/node_modules backend/node_modules
@@ -250,6 +267,7 @@ npm run install-all
 ```
 
 ### React Scripts Not Found
+
 ```bash
 cd frontend
 npm install react-scripts --save
@@ -273,12 +291,13 @@ npm install react-scripts --save
 ## 📞 Support
 
 For issues or questions:
+
 - Check the documentation
 - Review code comments
 - Create an issue on GitHub
 
 ---
 
-**Happy Coding! 🎉**
+## Happy Coding! 🎉
 
 Built with ❤️ for the hospitality industry
